@@ -1,0 +1,160 @@
+[gd_scene format=3 uid="uid://dc78jsfal3qkt"]
+
+[ext_resource type="Texture2D" uid="uid://dyfs4u3sgy2rb" path="res://Sprites/Battle/PlayerCharacters/knight.png" id="1_ttgct"]
+[ext_resource type="FontFile" uid="uid://6t4qsapphueg" path="res://Font/Jersey20-Regular.ttf" id="2_hwev6"]
+[ext_resource type="Texture2D" uid="uid://p1mfv4nkr8go" path="res://Sprites/Battle/UI/turn_indicator.png" id="3_wqhrw"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3wdat"]
+radius = 47.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1ruyk"]
+atlas = ExtResource("1_ttgct")
+region = Rect2(0, 0, 182, 123)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1otgo"]
+atlas = ExtResource("1_ttgct")
+region = Rect2(182, 0, 182, 123)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pd5xk"]
+atlas = ExtResource("1_ttgct")
+region = Rect2(364, 0, 182, 123)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f6xt6"]
+atlas = ExtResource("1_ttgct")
+region = Rect2(546, 0, 182, 123)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ww2ai"]
+atlas = ExtResource("1_ttgct")
+region = Rect2(728, 0, 182, 123)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lrv64"]
+atlas = ExtResource("1_ttgct")
+region = Rect2(910, 0, 182, 123)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3wdat"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1ruyk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1otgo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pd5xk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f6xt6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ww2ai")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lrv64")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 12.0
+}]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3wdat"]
+bg_color = Color(0.3180198, 0.31801978, 0.31801975, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vxw4u"]
+bg_color = Color(0.28730717, 0, 0.01405957, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5esyd"]
+bg_color = Color(0.66449726, 0.168544, 0.18698671, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oxf17"]
+bg_color = Color(0.011098229, 0.17550313, 0.34675768, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1ruyk"]
+bg_color = Color(0.11153001, 0.478826, 0.8515964, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_3wdat"]
+font = ExtResource("2_hwev6")
+font_size = 9
+outline_size = 2
+outline_color = Color(0.0253638, 0.0253638, 0.025363795, 1)
+
+[node name="Battler" type="Area2D" unique_id=1998147921]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1900733956]
+shape = SubResource("CircleShape2D_3wdat")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1980297091]
+sprite_frames = SubResource("SpriteFrames_3wdat")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="HeaderBar" type="Control" parent="." unique_id=1606635345]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -50.0
+offset_top = -74.0
+offset_right = 50.0
+offset_bottom = -44.0
+
+[node name="BG" type="Panel" parent="HeaderBar" unique_id=1992025921]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -15.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_3wdat")
+
+[node name="HealthBar" type="ProgressBar" parent="HeaderBar" unique_id=1995686562]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 17.0
+offset_right = 49.0
+offset_bottom = 28.0
+theme_override_styles/background = SubResource("StyleBoxFlat_vxw4u")
+theme_override_styles/fill = SubResource("StyleBoxFlat_5esyd")
+value = 50.0
+show_percentage = false
+
+[node name="ManaBar" type="ProgressBar" parent="HeaderBar" unique_id=1230862784]
+layout_mode = 0
+offset_left = 51.0
+offset_top = 17.0
+offset_right = 98.0
+offset_bottom = 28.0
+theme_override_styles/background = SubResource("StyleBoxFlat_oxf17")
+theme_override_styles/fill = SubResource("StyleBoxFlat_1ruyk")
+value = 50.0
+show_percentage = false
+
+[node name="HealthLabel" type="Label" parent="HeaderBar" unique_id=609060490]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 18.0
+offset_right = 49.0
+offset_bottom = 28.0
+text = "HP: 34 / 40"
+label_settings = SubResource("LabelSettings_3wdat")
+
+[node name="ManaLabel" type="Label" parent="HeaderBar" unique_id=146359619]
+layout_mode = 0
+offset_left = 53.0
+offset_top = 18.0
+offset_right = 98.0
+offset_bottom = 28.0
+text = "MP: 16 / 20"
+label_settings = SubResource("LabelSettings_3wdat")
+
+[node name="StatusIconContainer" type="HBoxContainer" parent="HeaderBar" unique_id=369606516]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 13.0
+grow_horizontal = 2
+
+[node name="TurnIndicator" type="Sprite2D" parent="." unique_id=766491074]
+position = Vector2(-60, -51)
+rotation = 1.5707964
+texture = ExtResource("3_wqhrw")
