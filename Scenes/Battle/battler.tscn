@@ -1,8 +1,11 @@
 [gd_scene format=3 uid="uid://dc78jsfal3qkt"]
 
+[ext_resource type="Script" uid="uid://65kl2kj6u2rg" path="res://Scripts/Battle/Battler/battler.gd" id="1_hwev6"]
 [ext_resource type="Texture2D" uid="uid://dyfs4u3sgy2rb" path="res://Sprites/Battle/PlayerCharacters/knight.png" id="1_ttgct"]
 [ext_resource type="FontFile" uid="uid://6t4qsapphueg" path="res://Font/Jersey20-Regular.ttf" id="2_hwev6"]
+[ext_resource type="Resource" uid="uid://detreiohbhv58" path="res://Data/Battlers/knight.tres" id="2_wqhrw"]
 [ext_resource type="Texture2D" uid="uid://p1mfv4nkr8go" path="res://Sprites/Battle/UI/turn_indicator.png" id="3_wqhrw"]
+[ext_resource type="Script" uid="uid://ckgai8g2mes2q" path="res://Scripts/Battle/Battler/battler_header_bar.gd" id="4_6scdb"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3wdat"]
 radius = 47.0
@@ -79,6 +82,8 @@ outline_size = 2
 outline_color = Color(0.0253638, 0.0253638, 0.025363795, 1)
 
 [node name="Battler" type="Area2D" unique_id=1998147921]
+script = ExtResource("1_hwev6")
+data = ExtResource("2_wqhrw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1900733956]
 shape = SubResource("CircleShape2D_3wdat")
@@ -95,6 +100,7 @@ offset_left = -50.0
 offset_top = -74.0
 offset_right = 50.0
 offset_bottom = -44.0
+script = ExtResource("4_6scdb")
 
 [node name="BG" type="Panel" parent="HeaderBar" unique_id=1992025921]
 layout_mode = 1

@@ -36,3 +36,11 @@ enum Stat
 	Stat.ACCURACY: 90,
 	Stat.EVASION: 10
 }
+
+@export var skill : Array[SkillData]
+@export var basic_attack : UseableData
+
+## Skills
+## Basic attack
+## Status immunities
+## Defending Status
