@@ -1,0 +1,62 @@
+[gd_scene format=3 uid="uid://di7i7qy41gre4"]
+
+[ext_resource type="Texture2D" uid="uid://ve68a05pw5v3" path="res://Sprites/Battle/Backgrounds/13.png" id="1_3qw02"]
+[ext_resource type="Script" uid="uid://c5kdu7yoebex8" path="res://Scripts/Battle/battle_manager.gd" id="1_aqr0y"]
+[ext_resource type="PackedScene" uid="uid://dc78jsfal3qkt" path="res://Scenes/Battle/battler.tscn" id="2_aqr0y"]
+[ext_resource type="PackedScene" uid="uid://d06dfaxjyk617" path="res://Scenes/Battle/UI/button_container.tscn" id="4_wqxgi"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aqr0y"]
+bg_color = Color(0.15270719, 0.08587638, 0.20938477, 1)
+
+[node name="Main" type="Node2D" unique_id=2112406527]
+
+[node name="BattleManager" type="Node" parent="." unique_id=8603010 node_paths=PackedStringArray("party", "enemies")]
+script = ExtResource("1_aqr0y")
+party = [NodePath("../PlayerBattler")]
+enemies = [NodePath("../EnemyBattler")]
+metadata/_custom_type_script = "uid://c5kdu7yoebex8"
+
+[node name="Background" type="Sprite2D" parent="." unique_id=1438636011]
+z_index = -100
+position = Vector2(0, -19)
+scale = Vector2(1.25, 1)
+texture = ExtResource("1_3qw02")
+metadata/_edit_lock_ = true
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1520466772]
+position = Vector2(-1, 2)
+zoom = Vector2(1.5, 1.5)
+
+[node name="PlayerBattler" parent="." unique_id=1998147921 instance=ExtResource("2_aqr0y")]
+position = Vector2(187, 0)
+
+[node name="EnemyBattler" parent="." unique_id=920273263 instance=ExtResource("2_aqr0y")]
+position = Vector2(-161, 0)
+
+[node name="BattleUI" type="Panel" parent="." unique_id=2073214174]
+offset_left = -385.0
+offset_top = 96.0
+offset_right = 383.0
+offset_bottom = 216.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_aqr0y")
+
+[node name="ActionsButtonContainer" parent="BattleUI" unique_id=2027704752 instance=ExtResource("4_wqxgi")]
+layout_mode = 0
+offset_left = 265.0
+offset_top = 6.0
+offset_right = 425.0
+offset_bottom = 117.0
+
+[node name="SkillsButtonContainer2" parent="BattleUI" unique_id=1646611476 instance=ExtResource("4_wqxgi")]
+layout_mode = 0
+offset_left = 434.0
+offset_top = 6.0
+offset_right = 594.0
+offset_bottom = 117.0
+
+[node name="TargetsButtonContainer3" parent="BattleUI" unique_id=145750880 instance=ExtResource("4_wqxgi")]
+layout_mode = 0
+offset_left = 604.0
+offset_top = 6.0
+offset_right = 764.0
+offset_bottom = 117.0

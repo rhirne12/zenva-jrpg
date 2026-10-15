@@ -1,0 +1,73 @@
+[gd_scene format=3 uid="uid://d06dfaxjyk617"]
+
+[ext_resource type="Script" uid="uid://ffp2fot7rcdb" path="res://Scripts/UI/button_container.gd" id="1_321rd"]
+[ext_resource type="FontFile" uid="uid://6t4qsapphueg" path="res://Font/Jersey20-Regular.ttf" id="2_3ll48"]
+[ext_resource type="PackedScene" uid="uid://cfe0alxtqwcyh" path="res://Scenes/Battle/UI/battle_button.tscn" id="3_scs1m"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_3wdat"]
+font = ExtResource("2_3ll48")
+font_color = Color(1, 0.8004133, 0.0906673, 1)
+
+[node name="ButtonContainer" type="Control" unique_id=2027704752]
+custom_minimum_size = Vector2(160, 110)
+layout_mode = 3
+anchors_preset = 0
+offset_left = 290.0
+offset_top = 4.0
+offset_right = 450.0
+offset_bottom = 114.0
+script = ExtResource("1_321rd")
+
+[node name="Header" type="Label" parent="." unique_id=717957051]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 23.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.725284, 0.6170975, 1.1551381e-06, 1)
+text = "Button Header"
+label_settings = SubResource("LabelSettings_3wdat")
+horizontal_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="." unique_id=415997049]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 23.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer" unique_id=596971222]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="BattleButton" parent="ScrollContainer/VBoxContainer" unique_id=498923093 instance=ExtResource("3_scs1m")]
+layout_mode = 2
+
+[node name="BattleButton2" parent="ScrollContainer/VBoxContainer" unique_id=72847386 instance=ExtResource("3_scs1m")]
+layout_mode = 2
+
+[node name="BattleButton3" parent="ScrollContainer/VBoxContainer" unique_id=939553863 instance=ExtResource("3_scs1m")]
+layout_mode = 2
+
+[node name="BattleButton4" parent="ScrollContainer/VBoxContainer" unique_id=686298250 instance=ExtResource("3_scs1m")]
+layout_mode = 2
+
+[node name="BattleButton5" parent="ScrollContainer/VBoxContainer" unique_id=1697955188 instance=ExtResource("3_scs1m")]
+layout_mode = 2
+
+[node name="BattleButton6" parent="ScrollContainer/VBoxContainer" unique_id=2083117820 instance=ExtResource("3_scs1m")]
+layout_mode = 2
+
+[node name="BattleButton7" parent="ScrollContainer/VBoxContainer" unique_id=1383122416 instance=ExtResource("3_scs1m")]
+layout_mode = 2
+
+[node name="BattleButton8" parent="ScrollContainer/VBoxContainer" unique_id=1912742432 instance=ExtResource("3_scs1m")]
+layout_mode = 2
+
+[node name="BattleButton9" parent="ScrollContainer/VBoxContainer" unique_id=1029335747 instance=ExtResource("3_scs1m")]
+layout_mode = 2
+
+[node name="BattleButton10" parent="ScrollContainer/VBoxContainer" unique_id=731647284 instance=ExtResource("3_scs1m")]
+layout_mode = 2
