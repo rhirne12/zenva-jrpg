@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="SkillData" format=3 uid="uid://y2uq04awdu8n"]
+
+[ext_resource type="Script" uid="uid://d22sxk1qyyrxy" path="res://Scripts/Battle/Useable/skill_data.gd" id="1_6b5k4"]
+
+[resource]
+script = ExtResource("1_6b5k4")
+mana_cost = 12
+display_name = "Heavy Attack"
+description = "Deal 200% damage to a single enemy"
+output_type = 1
+power = 200
+scaling_stat = 3
+defending_stat = 4
+crit_chance = 0.1
+accuracy = 0.95
+metadata/_custom_type_script = "uid://d22sxk1qyyrxy"

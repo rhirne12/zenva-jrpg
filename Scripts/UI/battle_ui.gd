@@ -70,10 +70,30 @@ func _display_actions ():
 	bc.initialize("Actions", data)
 	
 func _display_skills ():
-	pass
+	var bc : ButtonContainer = button_containers["skills"]
+	var data : Array[Dictionary]
+	
+	for skill in curr_battler.data.skills:
+		data.append({
+			"text": skill.display_name,
+			"info": skill.description,
+			"clicked": _on_skill_selected.bind(skill)
+		})
+	
+	bc.initialize("Skills", data)
 
 func _display_targets ():
-	pass
+	var bc : ButtonContainer = button_containers["targets"]
+	var data : Array[Dictionary]
+	
+	for target in possible_targets:
+		data.append({
+			"text": target.data.display_name,
+			"info": "NEED TO IMPLEMENT",
+			"clicked": _on_target_selected.bind(target)
+		})
+		
+		bc.initialize("Targets", data)
 
 ## Callbacks
 func _on_changed_state (state : BattleManager.State):
@@ -85,16 +105,59 @@ func _on_changed_state (state : BattleManager.State):
 		_disable_all_containers()
 
 func _on_attack_selected ():
-	print("Attack Selected!!")
+	current_action = BattleAction.new()
+	current_action.actor = curr_battler
+	current_action.type = BattleAction.Type.BASIC_ATTACK
+	current_action.useable = curr_battler.data.basic_attack
+	
+	possible_targets = battle_manager.alive_enemies
+	
+	_display_targets()
 
 func _on_defend_selected ():
 	print("Defend Selected!!")
 
 func _on_skills_selected ():
-	print("Skills Selected!!")
+	_display_skills()
 
 func _on_end_turn_selected ():
 	print("End Turn Selected!!")
 	
 func _on_flee_selected ():
 	print("Flee Selected!!")	
+
+func _on_skill_selected (skill : SkillData):
+	## reset button container
+	button_containers["targets"].visible = false
+	
+	current_action = BattleAction.new()
+	current_action.actor = curr_battler
+	current_action.type = BattleAction.Type.SKILL
+	current_action.useable = skill
+	
+	var display_targets : bool = false
+	
+	match skill.target_type:
+		UseableData.TargetType.SINGLE_ENEMY:
+			display_targets = true
+			possible_targets = battle_manager.alive_enemies
+		UseableData.TargetType.SINGLE_ALLY:
+			display_targets = true
+			possible_targets = battle_manager.alive_party
+		UseableData.TargetType.SELF:
+			possible_targets = [curr_battler]
+		UseableData.TargetType.ALL_ALLIES:
+			possible_targets = battle_manager.alive_party
+		UseableData.TargetType.ALL_ENEMIES:
+			possible_targets = battle_manager.alive_enemies
+	
+	if display_targets:
+		_display_targets()
+	else:
+		current_action.targets = possible_targets
+		battle_manager.submit_player_input(current_action)
+	
+
+func _on_target_selected (target : Battler):
+	current_action.targets = [target]
+	battle_manager.submit_player_input(current_action)

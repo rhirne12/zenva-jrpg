@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="BattlerData" format=3 uid="uid://c1ioqg8c2fpu0"]
+
+[ext_resource type="Resource" uid="uid://c15n5cgfopvr1" path="res://Data/Useables/physical_basic_attack.tres" id="1_c2jb5"]
+[ext_resource type="Script" uid="uid://cruyrw5tlcxbo" path="res://Scripts/Common/battler_data.gd" id="2_oi8r1"]
+[ext_resource type="SpriteFrames" uid="uid://d3yg26jrp0avx" path="res://Sprites/Battle/EnemyCharacters/reptile_frames.tres" id="2_ur33w"]
+[ext_resource type="Script" uid="uid://d22sxk1qyyrxy" path="res://Scripts/Battle/Useable/skill_data.gd" id="3_ur33w"]
+
+[resource]
+script = ExtResource("2_oi8r1")
+display_name = "Reptile"
+team = 1
+basic_attack = ExtResource("1_c2jb5")
+battle_sprite_frames = ExtResource("2_ur33w")
+metadata/_custom_type_script = "uid://cruyrw5tlcxbo"

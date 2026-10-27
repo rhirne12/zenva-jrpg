@@ -1,9 +1,0 @@
-[gd_resource type="Resource" script_class="BattlerData" format=3 uid="uid://detreiohbhv58"]
-
-[ext_resource type="Script" uid="uid://cruyrw5tlcxbo" path="res://Scripts/Common/battler_data.gd" id="1_qnjak"]
-[ext_resource type="Script" uid="uid://d22sxk1qyyrxy" path="res://Scripts/Battle/Useable/skill_data.gd" id="2_s8evv"]
-
-[resource]
-script = ExtResource("1_qnjak")
-display_name = "Knight"
-metadata/_custom_type_script = "uid://cruyrw5tlcxbo"

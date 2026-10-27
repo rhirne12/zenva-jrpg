@@ -18,8 +18,13 @@ signal TurnEnded (battler : Battler)
 
 @export var party : Array[Battler]
 @export var enemies : Array[Battler]
-var turn_queue : Array[Battler]
 
+var alive_party : Array[Battler]:
+	get: return party.filter(func(b): return b.is_alive)
+var alive_enemies : Array[Battler]:
+	get: return enemies.filter(func(b): return b.is_alive)
+
+var turn_queue : Array[Battler]
 var state : State
 var current_actor : Battler
 var current_action : BattleAction
@@ -92,7 +97,9 @@ func _enter_turn_resolutions ():
 	if not current_action:
 		_next_battler_turn()
 		return
-		
+	
+	current_actor.anim.play_action_animation(current_action)
+	
 	match current_action.type:
 		BattleAction.Type.BASIC_ATTACK : _execute_useable()
 		BattleAction.Type.SKILL : _execute_skill()
@@ -116,8 +123,11 @@ func submit_player_input (action : BattleAction):
 	
 func _execute_useable ():
 	for target in current_action.targets:
-		var dmg : int = current_action.actor.get_stat(BattlerData.Stat.ATTACK)
-		target.take_damage(dmg)
+		if current_action.useable.output_type == UseableData.OutputType.HEAL:
+			target.heal(current_action.useable.power)
+		else:
+			var dmg : int = current_action.actor.get_stat(BattlerData.Stat.ATTACK)
+			target.take_damage(dmg)
 	
 func _execute_skill ():
 	var skill : SkillData = current_action.useable

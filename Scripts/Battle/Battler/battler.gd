@@ -14,6 +14,8 @@ var current_health : int
 var current_mana : int
 var is_alive : bool = true
 
+@onready var anim : BattlerAnimation = $AnimatedSprite2D
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	## set current HP / MP
@@ -22,6 +24,8 @@ func _ready() -> void:
 	
 	HealthChanged.emit(current_health, current_health)
 	ManaChanged.emit(current_mana, current_mana)
+	
+	anim.initialize(data)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -38,6 +42,9 @@ func take_damage(amount : int):
 	var max_health : int = get_stat(BattlerData.Stat.MAX_HEALTH)
 	current_health -= amount
 	HealthChanged.emit(current_health, max_health)
+	
+	anim.play(BattlerAnimation.HIT)
+	anim.flash_color(Color.RED)
 	
 	if current_health <= 0:
 		die()

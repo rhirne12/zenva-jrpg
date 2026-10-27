@@ -37,8 +37,10 @@ enum Stat
 	Stat.EVASION: 10
 }
 
-@export var skill : Array[SkillData]
+@export var skills : Array[SkillData]
 @export var basic_attack : UseableData
+
+@export var battle_sprite_frames : SpriteFrames
 
 ## Skills
 ## Basic attack
