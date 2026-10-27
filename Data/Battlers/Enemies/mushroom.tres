@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="BattlerData" format=3 uid="uid://bgq4mmkcpdqst"]
+
+[ext_resource type="Resource" uid="uid://c15n5cgfopvr1" path="res://Data/Useables/physical_basic_attack.tres" id="1_4yqmx"]
+[ext_resource type="Script" uid="uid://cruyrw5tlcxbo" path="res://Scripts/Common/battler_data.gd" id="1_w3bku"]
+[ext_resource type="Script" uid="uid://d22sxk1qyyrxy" path="res://Scripts/Battle/Useable/skill_data.gd" id="2_4yqmx"]
+[ext_resource type="SpriteFrames" uid="uid://dbqve6lsgvl1j" path="res://Sprites/Battle/EnemyCharacters/mushroom_frames.tres" id="2_oi0df"]
+
+[resource]
+script = ExtResource("1_w3bku")
+display_name = "Mushroom"
+team = 1
+basic_attack = ExtResource("1_4yqmx")
+battle_sprite_frames = ExtResource("2_oi0df")
+metadata/_custom_type_script = "uid://cruyrw5tlcxbo"

@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="BattlerData" format=3 uid="uid://cs6jycwwjqg1d"]
+
+[ext_resource type="Resource" uid="uid://bgkavewdyw8mb" path="res://Data/Useables/magic_basic_attack.tres" id="1_idsnu"]
+[ext_resource type="Script" uid="uid://cruyrw5tlcxbo" path="res://Scripts/Common/battler_data.gd" id="1_xkv7g"]
+[ext_resource type="Script" uid="uid://d22sxk1qyyrxy" path="res://Scripts/Battle/Useable/skill_data.gd" id="2_m7784"]
+[ext_resource type="SpriteFrames" uid="uid://u7xq0luu4u4q" path="res://Sprites/Battle/PlayerCharacters/wizard_frames.tres" id="2_xrn4f"]
+[ext_resource type="Resource" uid="uid://gs4qhia0y8jp" path="res://Data/Skills/bandage.tres" id="4_xrn4f"]
+
+[resource]
+script = ExtResource("1_xkv7g")
+display_name = "Wizard"
+skills = Array[ExtResource("2_m7784")]([ExtResource("4_xrn4f")])
+basic_attack = ExtResource("1_idsnu")
+battle_sprite_frames = ExtResource("2_xrn4f")
+metadata/_custom_type_script = "uid://cruyrw5tlcxbo"

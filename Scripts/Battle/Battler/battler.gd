@@ -15,6 +15,9 @@ var current_mana : int
 var is_alive : bool = true
 
 @onready var anim : BattlerAnimation = $AnimatedSprite2D
+@onready var turn_indicator : Node2D = $TurnIndicator
+
+@onready var battle_manager : BattleManager = get_tree().root.get_node("Main/BattleManager")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -26,6 +29,17 @@ func _ready() -> void:
 	ManaChanged.emit(current_mana, current_mana)
 	
 	anim.initialize(data)
+
+	battle_manager.TurnBegan.connect(_on_turn_began)
+	battle_manager.TurnEnded.connect(_on_turn_ended)
+
+func _on_turn_began (battler : Battler):
+	if battler == self:
+		turn_indicator.visible = true
+
+func _on_turn_ended (battler : Battler):
+	if battler == self:
+		turn_indicator.visible = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -78,7 +92,11 @@ func restore_mana(amount : int):
 	ManaChanged.emit(current_mana, max_mana)
 
 func evade ():
-	pass
+	print ("Evaded!!")
 
 func die ():
-	pass
+	is_alive = false	
+	battle_manager.battler_died(self)
+	
+	await get_tree().create_timer(0.3).timeout
+	visible = false

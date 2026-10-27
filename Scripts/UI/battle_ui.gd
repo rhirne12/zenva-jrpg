@@ -121,7 +121,7 @@ func _on_skills_selected ():
 	_display_skills()
 
 func _on_end_turn_selected ():
-	print("End Turn Selected!!")
+	battle_manager.submit_player_input(null)
 	
 func _on_flee_selected ():
 	print("Flee Selected!!")	

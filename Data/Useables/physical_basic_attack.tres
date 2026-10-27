@@ -6,6 +6,7 @@
 script = ExtResource("1_po6y6")
 display_name = "Basic Attack"
 description = "Deal 100% damage to a single enemy"
+output_type = 1
 scaling_stat = 3
 defending_stat = 4
 accuracy = 1.0

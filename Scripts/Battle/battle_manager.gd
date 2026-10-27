@@ -59,7 +59,7 @@ func _next_battler_turn ():
 	current_actor = turn_queue.pop_front()
 	
 	## make sure actor is still alive, if not, get the next actor
-	if (not current_actor.is_alive):
+	if not current_actor.is_alive:
 		_next_battler_turn()
 		return
 	
@@ -90,8 +90,14 @@ func _enter_battler_input ():
 	if current_actor.data.team == BattlerData.Team.PARTY:
 		pass # Do nothing as this is managed by the BattleUI script
 	else:
-		pass # Decide ememy's actoon and execute it
-	
+		## create a basic enemy AI to simply attack a random player
+		current_action = BattleAction.new()
+		current_action.actor = current_actor
+		current_action.targets = [alive_party.pick_random()]
+		current_action.type = BattleAction.Type.BASIC_ATTACK
+		current_action.useable = current_actor.data.basic_attack
+		_change_state(State.TURN_RESOLUTION)
+		
 func _enter_turn_resolutions ():
 	## if we send over a null action, simply move on to next person turn - should not happen
 	if not current_action:
@@ -109,10 +115,17 @@ func _enter_turn_resolutions ():
 	## wait 1 second before moving to next battler turn
 	await get_tree().create_timer(1.0).timeout
 	
+	## if our state has changed while we are waiting, just return don't go to next battler
+	if state != State.TURN_RESOLUTION:
+		return
+	
 	_next_battler_turn()
 
 func _enter_end ():
-	pass
+	if alive_enemies.is_empty():
+		print("Party wins!")
+	else:
+		print("Enemies wins!")
 
 func _enter_flee ():
 	pass
@@ -123,11 +136,17 @@ func submit_player_input (action : BattleAction):
 	
 func _execute_useable ():
 	for target in current_action.targets:
-		if current_action.useable.output_type == UseableData.OutputType.HEAL:
-			target.heal(current_action.useable.power)
+		var result = ActionCalculator.calculate(current_actor, target, current_action.useable)
+		
+		if result.is_heal:
+			target.heal(result.amount)
+		elif not result.is_hit:
+			target.evade()
 		else:
-			var dmg : int = current_action.actor.get_stat(BattlerData.Stat.ATTACK)
-			target.take_damage(dmg)
+			if result.is_crit:
+				## Play unique sound / effect
+				pass			
+			target.take_damage(result.amount)
 	
 func _execute_skill ():
 	var skill : SkillData = current_action.useable
@@ -145,4 +164,9 @@ func _execute_defend ():
 func _execute_flee ():
 	pass
 	
+func battler_died (battler : Battler):
+	print("%s has been defeated!" % battler.data.display_name)
+	
+	if alive_enemies.is_empty() or alive_party.is_empty():
+		_change_state(State.END)
 	

@@ -6,6 +6,8 @@
 [ext_resource type="Script" uid="uid://dveh1cfcujeor" path="res://Scripts/UI/battle_ui.gd" id="4_o8bsx"]
 [ext_resource type="PackedScene" uid="uid://d06dfaxjyk617" path="res://Scenes/Battle/UI/button_container.tscn" id="4_wqxgi"]
 [ext_resource type="Resource" uid="uid://c1ioqg8c2fpu0" path="res://Data/Battlers/Enemies/reptile.tres" id="6_en5gs"]
+[ext_resource type="Resource" uid="uid://cs6jycwwjqg1d" path="res://Data/Battlers/Party/wizard.tres" id="6_j1k4e"]
+[ext_resource type="Resource" uid="uid://bgq4mmkcpdqst" path="res://Data/Battlers/Enemies/mushroom.tres" id="6_vvvpr"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aqr0y"]
 bg_color = Color(0.15270719, 0.08587638, 0.20938477, 1)
@@ -14,7 +16,7 @@ bg_color = Color(0.15270719, 0.08587638, 0.20938477, 1)
 
 [node name="BattleManager" type="Node" parent="." unique_id=8603010 node_paths=PackedStringArray("party", "enemies")]
 script = ExtResource("1_aqr0y")
-party = [NodePath("../PlayerBattler")]
+party = [NodePath("../PlayerBattler"), NodePath("../PlayerBattler2")]
 enemies = [NodePath("../EnemyBattler"), NodePath("../EnemyBattler2")]
 metadata/_custom_type_script = "uid://c5kdu7yoebex8"
 
@@ -60,11 +62,15 @@ position = Vector2(-1, 2)
 zoom = Vector2(1.5, 1.5)
 
 [node name="PlayerBattler" parent="." unique_id=1998147921 instance=ExtResource("2_aqr0y")]
-position = Vector2(187, 0)
+position = Vector2(256, -99)
+data = ExtResource("6_j1k4e")
+
+[node name="PlayerBattler2" parent="." unique_id=1272965089 instance=ExtResource("2_aqr0y")]
+position = Vector2(221, 21)
 
 [node name="EnemyBattler" parent="." unique_id=920273263 instance=ExtResource("2_aqr0y")]
 position = Vector2(-202, -88)
-data = ExtResource("6_en5gs")
+data = ExtResource("6_vvvpr")
 
 [node name="EnemyBattler2" parent="." unique_id=1114410891 instance=ExtResource("2_aqr0y")]
 position = Vector2(-94, 20)

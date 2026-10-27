@@ -9,6 +9,17 @@
 script = ExtResource("2_oi8r1")
 display_name = "Reptile"
 team = 1
+base_stats = Dictionary[int, Variant]({
+0: 10,
+1: 100,
+2: 5,
+3: 10,
+4: 4,
+5: 6,
+6: 3,
+7: 90,
+8: 10
+})
 basic_attack = ExtResource("1_c2jb5")
 battle_sprite_frames = ExtResource("2_ur33w")
 metadata/_custom_type_script = "uid://cruyrw5tlcxbo"
